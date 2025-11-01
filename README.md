@@ -4,16 +4,33 @@ A comprehensive web-based dashboard for visualizing and analyzing NYC 311 servic
 
 ## Features
 
-### Interactive Map
-- **ArcGIS API 4** powered map showing all 311 service requests across NYC
-- Color-coded markers based on request status (Open, Closed, Pending)
-- Interactive popups with detailed request information
-- Click on any marker to view full details including:
+### 🌐 Interactive 3D Map with WebGL Animations
+- **ArcGIS SceneView (3D)** powered map with stunning WebGL rendering
+- **3D Building Extrusions** - Real NYC building footprints with realistic 3D models
+- **Animated 3D Markers** - Cylinder and sphere 3D symbols for each service request
+- **Pulsing Animations** - WebGL-powered pulse effects on open requests using requestAnimationFrame
+- **Color-coded markers** based on request status (Red=Open, Green=Closed, Yellow=Pending)
+- **Smooth Camera Controls** - Tilt, rotate, and fly through NYC in 3D
+- **Daylight Widget** - Control time of day and lighting conditions
+- **Interactive popups** with detailed request information
+- Click on any 3D marker to view full details including:
   - Complaint type and descriptor
   - Borough and address
   - Agency responsible
   - Creation and closure dates
   - Resolution description
+
+### 🎮 3D Map Controls
+- **Toggle Pulse Animations** - Enable/disable WebGL pulse effects on markers
+- **Toggle 3D Buildings** - Show/hide NYC building layer
+- **Basemap Selector** - Choose from 6 different basemaps (Dark Gray, Streets, Satellite, Hybrid, Topographic, Light Gray)
+- **Fly To Borough** - Smooth animated camera transitions to any NYC borough
+  - Manhattan
+  - Brooklyn
+  - Queens
+  - Bronx
+  - Staten Island
+  - Reset View (return to full NYC view)
 
 ### Dynamic Charts
 - **Top Complaint Types** - Horizontal bar chart showing the most common complaint types
@@ -107,11 +124,21 @@ Simply open `index.html` in your web browser. Note: Some features may not work p
 2. Click "Apply Filters" to update the dashboard
 3. Click "Reset" to clear all filters and show all data
 
-### Exploring the Map
-- Zoom in/out using the mouse wheel or zoom controls
-- Pan by clicking and dragging
-- Click on any marker to view request details in a popup
-- Use the Home button (top-left) to reset the map view
+### Exploring the 3D Map
+- **Zoom** - Use mouse wheel or zoom controls
+- **Pan** - Click and drag to move around
+- **Rotate** - Right-click and drag, or Ctrl+drag
+- **Tilt** - Shift+drag up/down to adjust camera angle
+- **Click markers** - View detailed request information in popups
+- **Home button** - Reset to initial 3D view
+- **Daylight widget** - Adjust sun position and lighting (top-right)
+
+### Using 3D Controls
+1. **Pulse Animations** - Toggle the animated pulse effect on open requests
+2. **3D Buildings** - Show or hide NYC building layer for better performance
+3. **Change Basemap** - Select different map styles from the dropdown
+4. **Fly To Borough** - Click any borough button for smooth animated flight to that area
+5. **Reset View** - Return to the full NYC overview
 
 ### Analyzing Charts
 - Hover over chart elements to see detailed tooltips
@@ -164,21 +191,50 @@ The dashboard is fully responsive and works on:
 
 ## Performance
 
-- Handles 500+ data points efficiently
-- Optimized chart rendering
-- Lazy loading for map markers
-- Smooth animations and transitions
+- Handles 500+ data points efficiently with WebGL rendering
+- Optimized chart rendering with Chart.js
+- Staggered marker loading (5ms delay per marker) for smooth animations
+- RequestAnimationFrame for 60fps pulse animations
+- Smooth camera transitions with easing functions
+- GPU-accelerated 3D rendering via WebGL
+- Efficient layer management for buildings and markers
+
+## WebGL & 3D Animation Details
+
+### Marker Symbols
+- **3D Cylinder + Sphere**: Each request is represented by a 3D cylinder with a sphere on top
+- **Vertical Offset**: Markers float above ground with callout lines
+- **Color Coding**: Dynamic color based on status (Open/Closed/Pending)
+- **Semi-transparent**: Cylinders use 20% transparency for better visibility
+
+### Pulse Animation
+- **requestAnimationFrame**: Browser-native animation loop for optimal performance
+- **Dynamic Size**: Markers pulse from 20px to 50px
+- **Opacity Animation**: Fades from 0.8 to 0.4 during pulse cycle
+- **Bidirectional**: Smooth pulse in and out using direction multiplier
+
+### Camera Animations
+- **Smooth Transitions**: 2-second animated flights to boroughs
+- **Easing Functions**: ease-in-out for natural camera movement
+- **Tilt Control**: 45-degree angle for optimal 3D viewing
+- **Altitude Constraints**: Limited between 1,000m and 100,000m
 
 ## Future Enhancements
 
+- [x] 3D Map with WebGL rendering ✅ IMPLEMENTED
+- [x] Animated markers with pulse effects ✅ IMPLEMENTED
+- [x] 3D Building extrusions ✅ IMPLEMENTED
+- [x] Smooth camera animations ✅ IMPLEMENTED
 - [ ] Real-time data connection to NYC Open Data API
 - [ ] Data export to CSV/Excel (partially implemented)
 - [ ] Advanced search functionality
-- [ ] Heat map visualization
-- [ ] Clustering for large datasets
+- [ ] Heat map visualization layer
+- [ ] Clustering for very large datasets (1000+ points)
 - [ ] User authentication and saved filters
-- [ ] Historical data comparison
-- [ ] Predictive analytics
+- [ ] Historical data comparison timeline
+- [ ] Predictive analytics using ML
+- [ ] Camera auto-rotation mode
+- [ ] Particle effects for data flow visualization
 
 ## License
 

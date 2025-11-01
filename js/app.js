@@ -47,6 +47,60 @@ function setupEventListeners() {
         applyFilters();
     });
     */
+
+    // 3D Map Controls Event Listeners
+    setup3DControlListeners();
+}
+
+// Set up 3D control event listeners
+function setup3DControlListeners() {
+    // Toggle pulse animations
+    $('#toggleAnimation').on('change', function() {
+        const enabled = $(this).is(':checked');
+        if (typeof toggleAnimation === 'function') {
+            toggleAnimation(enabled);
+        }
+        console.log('Pulse animations:', enabled ? 'ON' : 'OFF');
+    });
+
+    // Toggle 3D buildings
+    $('#toggle3DBuildings').on('change', function() {
+        const enabled = $(this).is(':checked');
+        if (typeof toggle3DBuildings === 'function') {
+            toggle3DBuildings(enabled);
+        }
+        console.log('3D Buildings:', enabled ? 'ON' : 'OFF');
+    });
+
+    // Basemap selector
+    $('#basemapSelect').on('change', function() {
+        const basemapId = $(this).val();
+        if (typeof changeBasemap === 'function') {
+            changeBasemap(basemapId);
+        }
+        console.log('Basemap changed to:', basemapId);
+    });
+
+    // Borough fly-to buttons
+    $('.borough-btn').on('click', function() {
+        const borough = $(this).data('borough');
+
+        // Visual feedback
+        $('.borough-btn').removeClass('active');
+        $(this).addClass('active');
+
+        // Fly to borough
+        if (typeof flyToBorough === 'function') {
+            flyToBorough(borough);
+        }
+
+        console.log('Flying to:', borough);
+
+        // Remove active class after animation
+        setTimeout(function() {
+            $('.borough-btn').removeClass('active');
+        }, 2000);
+    });
 }
 
 // Apply filters to data

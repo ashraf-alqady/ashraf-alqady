@@ -114,6 +114,50 @@
                 <div class="map-container">
                     <div id="viewDiv"></div>
 
+                    <!-- 3D Map Controls -->
+                    <div class="map-controls">
+                        <h4>🎮 3D Controls</h4>
+
+                        <div class="control-section">
+                            <h5>Visualization</h5>
+                            <label class="switch-label">
+                                <input type="checkbox" id="toggleAnimation" checked>
+                                <span class="switch-slider"></span>
+                                <span class="switch-text">Pulse Animations</span>
+                            </label>
+
+                            <label class="switch-label">
+                                <input type="checkbox" id="toggle3DBuildings" checked>
+                                <span class="switch-slider"></span>
+                                <span class="switch-text">3D Buildings</span>
+                            </label>
+                        </div>
+
+                        <div class="control-section">
+                            <h5>Basemap</h5>
+                            <select id="basemapSelect" class="control-select">
+                                <option value="dark-gray-vector">Dark Gray</option>
+                                <option value="streets-navigation-vector">Streets</option>
+                                <option value="satellite">Satellite</option>
+                                <option value="hybrid">Hybrid</option>
+                                <option value="topo-vector">Topographic</option>
+                                <option value="gray-vector">Light Gray</option>
+                            </select>
+                        </div>
+
+                        <div class="control-section">
+                            <h5>Fly To Borough</h5>
+                            <div class="borough-buttons">
+                                <button class="borough-btn" data-borough="MANHATTAN">Manhattan</button>
+                                <button class="borough-btn" data-borough="BROOKLYN">Brooklyn</button>
+                                <button class="borough-btn" data-borough="QUEENS">Queens</button>
+                                <button class="borough-btn" data-borough="BRONX">Bronx</button>
+                                <button class="borough-btn" data-borough="STATEN ISLAND">Staten Is.</button>
+                                <button class="borough-btn borough-btn-reset" data-borough="ALL">Reset View</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Map Legend -->
                     <div class="map-legend">
                         <h4>Request Status</h4>
@@ -134,7 +178,7 @@
                     <!-- Loading Indicator -->
                     <div id="loadingIndicator" class="loading-indicator">
                         <div class="spinner"></div>
-                        <p>Loading data...</p>
+                        <p>Loading 3D map...</p>
                     </div>
                 </div>
 
